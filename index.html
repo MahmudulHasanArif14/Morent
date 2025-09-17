@@ -23,9 +23,9 @@
 
 <body>
 
-    <header id="header">
+    <header id="header" class="p-2">
         <!-- Navbar  -->
-        <nav class="navbar navbar-expand-lg bg-primary-0">
+        <nav class="navbar navbar-expand-lg bg-primary-0 sticky-lg-top shadow-none">
             <div class="container-fluid">
                 <!-- logo -->
                 <a class="navbar-brand" href="#header"><img src="Assets/logo.png" alt="Logo" class="logo_img">
@@ -102,6 +102,218 @@
 
             </div>
         </nav>
+
+
+        <!-- Hero Content -->
+
+        <div class="container-fluid p-5 w-100" style="background-color: #F6F7F9;">
+
+
+
+            <div class="row  justify-content-around align-baseline">
+                <div class="col-lg-5 leftimg  p-5 rounded-3">
+                    <h1 class="plus-jakarta-sans-semi-bold text-primary-0  w-75">The Best Platform for CarRental</h1>
+                    <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Ease of doing a car rental safely and
+                        reliably. Of course at a low price.</p>
+                    <a href="#" class="btn btn-primary  plus-jakarta-sans-semi  fw-medium p-2">Rental Car</a>
+                </div>
+                <div class="col-lg-5 rightimg p-5 rounded-3">
+                    <h1 class=" plus-jakarta-sans-semi-bold text-primary-0 w-75">Easy way to rent a car at a low
+                        price</h1>
+                    <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Providing cheap car rental services
+                        and safe and comfortable facilities.</p>
+                    <a href="#" class="btn bg-info-500 text-primary-0   plus-jakarta-sans-semi fw-medium ">Rental
+                        Car</a>
+
+                </div>
+            </div>
+
+
+
+
+            <!-- location -->
+            <div class="container my-5">
+                <!-- Booking Section -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white shadow rounded">
+                            <h6 class="fw-bold">Pick - Up</h6>
+                            <div class="row g-2">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Location">
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <input type="time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-white shadow rounded">
+                            <h6 class="fw-bold">Drop - Off</h6>
+                            <div class="row g-2">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Location">
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <input type="time" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Cars -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold">Popular Car</h5>
+                    <a href="#" class="text-primary fw-semibold">View All</a>
+                </div>
+                <div class="row g-4">
+                    <!-- Car Card -->
+                    <div class="col-md-3">
+                        <div class="card p-3 position-relative">
+                            <span class="heart">♥</span>
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">Koenigsegg</h6>
+                                <p class="text-muted small">Sport | 90L | Manual | 2 People</p>
+                                <p class="price">$99.00 <span class="old-price">$100.00</span> / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card p-3 position-relative">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">Nissan GT - R</h6>
+                                <p class="text-muted small">Sport | 80L | Manual | 2 People</p>
+                                <p class="price">$80.00 <span class="old-price">$100.00</span> / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card p-3 position-relative">
+                            <span class="heart">♥</span>
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">Rolls - Royce</h6>
+                                <p class="text-muted small">Sedan | 70L | Manual | 4 People</p>
+                                <p class="price">$96.00 / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card p-3 position-relative">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">Nissan GT - R</h6>
+                                <p class="text-muted small">Sport | 80L | Manual | 2 People</p>
+                                <p class="price">$80.00 / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendation Cars -->
+                <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+                    <h5 class="fw-bold">Recommendation Car</h5>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card p-3">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">All New Rush</h6>
+                                <p class="text-muted small">SUV | 70L | Manual | 6 People</p>
+                                <p class="price">$72.00 <span class="old-price">$80.00</span> / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">CR - V</h6>
+                                <p class="text-muted small">SUV | 80L | Manual | 6 People</p>
+                                <p class="price">$80.00 / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">All New Terios</h6>
+                                <p class="text-muted small">SUV | 90L | Manual | 6 People</p>
+                                <p class="price">$74.00 / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3">
+                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
+                            <div class="card-body text-center">
+                                <h6 class="fw-bold">CR - V</h6>
+                                <p class="text-muted small">SUV | 80L | Manual | 6 People</p>
+                                <p class="price">$80.00 / day</p>
+                                <button class="btn rent-btn w-100">Rent Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </header>
 
 

@@ -14,7 +14,7 @@
 .button {
   background-color: #ffffff00;
   color: #fff;
-  width: 7.9em;
+  width: 10.1em;
   height: 2.9em;
   border: var(--primary-500) 0.1em solid;
   border-radius: 11px;
@@ -44,8 +44,9 @@
 }
 
 .regtxt {
-  margin: 0 1.5em;
+  margin: -0.1em 1.5em;
   color: black;
+  letter-spacing: .2em;
 }
 
 .button:hover .regtxt {
@@ -118,9 +119,65 @@
   width: 70%;
   transition-duration: .3s;
   padding-right: 10px;
+  letter-spacing: 0.2em;
 }
 
 /* button click effect*/
 .Btn:active {
   transform: translate(2px, 2px);
 }
+
+
+
+.leftimg {
+  background: url("../Assets/leftimg.png") no-repeat center/cover ;
+}
+.rightimg {
+  background: url("../Assets/rightimg.png") no-repeat center/cover;
+}
+
+
+ .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      border-radius: 10px;
+    }
+    .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #000;
+    }
+    .old-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.9rem;
+      margin-left: 5px;
+    }
+    .heart {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: red;
+      cursor: pointer;
+    }
+    .rent-btn {
+      background: #007bff;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+
+
+
+
+
+
