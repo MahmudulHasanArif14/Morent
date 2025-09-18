@@ -14,7 +14,7 @@
 .button {
   background-color: #ffffff00;
   color: #fff;
-  width: 7.9em;
+  width: 8.1em;
   height: 2.9em;
   border: var(--primary-500) 0.1em solid;
   border-radius: 11px;
@@ -31,7 +31,7 @@
 
 .button svg {
   width: 1.6em;
-  margin: -0.2em 0.8em 1em;
+  margin: -0.1em 0.8em 1em;
   position: absolute;
   display: flex;
   transition: all 0.6s ease;
