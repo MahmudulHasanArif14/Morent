@@ -13,12 +13,23 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Bootstrap Icons  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- font awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+
 
 
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
 </head>
 
 <body>
@@ -110,178 +121,575 @@
 
 
 
-            <div class="row  justify-content-around align-baseline">
-                <div class="col-lg-5 leftimg  p-5 rounded-3">
-                    <h1 class="plus-jakarta-sans-semi-bold text-primary-0  w-75">The Best Platform for CarRental</h1>
-                    <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Ease of doing a car rental safely and
-                        reliably. Of course at a low price.</p>
-                    <a href="#" class="btn btn-primary  plus-jakarta-sans-semi  fw-medium p-2">Rental Car</a>
+            <!-- hero image -->
+
+            <div class="row g-4 justify-content-around w-100">
+                <div class="col-lg-5 leftimg  p-5 rounded-3 ">
+
+                    <div class="content">
+                        <h1 class="plus-jakarta-sans-semi-bold text-primary-0  w-75">The Best Platform for CarRental
+                        </h1>
+                        <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Ease of doing a car rental safely and
+                            reliably. Of course at a low price.</p>
+
+                        <div class="w-50">
+                            <a href="#" class="btn btn-primary  plus-jakarta-sans-semi  fw-medium">Rental Car</a>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-lg-5 rightimg p-5 rounded-3">
-                    <h1 class=" plus-jakarta-sans-semi-bold text-primary-0 w-75">Easy way to rent a car at a low
-                        price</h1>
-                    <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Providing cheap car rental services
-                        and safe and comfortable facilities.</p>
-                    <a href="#" class="btn bg-info-500 text-primary-0   plus-jakarta-sans-semi fw-medium ">Rental
-                        Car</a>
+
+                <div class="col-lg-5 rightimg p-5 rounded-3 ">
+                    <div class="content">
+                        <h1 class=" plus-jakarta-sans-semi-bold text-primary-0 w-75">Easy way to rent a car at a low
+                            price</h1>
+                        <p class="text-primary-0 plus-jakarta-sans-semi fw-light ">Providing cheap car rental services
+                            and safe and comfortable facilities.</p>
+
+                        <div class="w-50">
+                            <a href="#"
+                                class="btn bg-info-500 text-primary-0   plus-jakarta-sans-semi fw-medium ">Rental
+                                Car</a>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
 
-
-
-            <!-- location -->
-            <div class="container my-5">
+            <div class="container-fluid p-5  ">
                 <!-- Booking Section -->
                 <div class="row mb-4">
-                    <div class="col-md-6">
+                    <div class="col-lg-5">
+                        <div class="p-3 bg-white shadow-sm rounded">
+                            <!-- pickup content -->
+                            <div class="pickup d-flex align-content-center gap-1 align-items-center p-1 my-2">
+                                <img src="Assets/pickupicon.png" alt="pickup-icon" style="width: 1rem;height: 1rem;"
+                                    class="mx-1">
+                                <h6 class="mb-0 fw-bold plus-jakarta-sans-semi-bold">Pick - Up</h6>
+                            </div>
+                            <!-- Filter Bar -->
+                            <div class="filter-bar">
+                                <div class="row">
+                                    <!-- Location -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Locations</span>
+                                        <select class="form-select">
+                                            <option selected disabled>Select your city</option>
+                                            <option>Dhaka</option>
+                                            <option>Sylhet</option>
+                                            <option>Chattogram</option>
+                                        </select>
+                                    </div>
+                                    <!-- Date -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Date</span>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="datepicker"
+                                                placeholder="Select date">
+                                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Time</span>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="timepicker"
+                                                placeholder="Select time">
+                                            <span class="input-group-text" id="clockIcon" style="cursor:pointer">
+                                                <i class="bi bi-clock"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- reverse btn -->
+                    <div class="col-lg-2 d-flex justify-content-center align-items-center   ">
+                        <div class="reverse-button">
+                            <button class="btn btn-primary  p-4 rounded-3">
+                                <i class="fa-solid fa-arrow-right-arrow-left "
+                                    style="transform: rotate(90deg); font-size:1.3rem ;"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-5">
                         <div class="p-3 bg-white shadow rounded">
-                            <h6 class="fw-bold">Pick - Up</h6>
-                            <div class="row g-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Location">
-                                </div>
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="col">
-                                    <input type="time" class="form-control">
+
+                            <div class="dropoff d-flex align-content-center gap-1 align-items-center p-1 my-2">
+                                <img src="Assets/dropoff.png" alt="dropoff-icon" style="width: 1rem;height: 1rem;"
+                                    class="mx-1">
+                                <h6 class="mb-0 fw-bold plus-jakarta-sans-semi-bold">Drop - Off</h6>
+                            </div>
+
+
+
+
+                            <!-- Filter Bar -->
+                            <div class="filter-bar">
+                                <div class="row">
+                                    <!-- Location -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Locations</span>
+                                        <select class="form-select">
+                                            <option selected disabled>Select your city</option>
+                                            <option>Dhaka</option>
+                                            <option>Sylhet</option>
+                                            <option>Chattogram</option>
+                                        </select>
+                                    </div>
+                                    <!-- Date -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Date</span>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="datepicker"
+                                                placeholder="Select date">
+                                            <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- Time -->
+                                    <div class="col-md-4 filter-item">
+                                        <span class="filter-label">Time</span>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="timepicker"
+                                                placeholder="Select time">
+                                            <span class="input-group-text" id="clockIcon" style="cursor:pointer">
+                                                <i class="bi bi-clock"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 bg-white shadow rounded">
-                            <h6 class="fw-bold">Drop - Off</h6>
-                            <div class="row g-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Location">
-                                </div>
-                                <div class="col">
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="col">
-                                    <input type="time" class="form-control">
-                                </div>
-                            </div>
+
+
+
+
+
                         </div>
                     </div>
                 </div>
 
-                <!-- Popular Cars -->
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold">Popular Car</h5>
-                    <a href="#" class="text-primary fw-semibold">View All</a>
-                </div>
-                <div class="row g-4">
-                    <!-- Car Card -->
-                    <div class="col-md-3">
-                        <div class="card p-3 position-relative">
-                            <span class="heart">♥</span>
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">Koenigsegg</h6>
-                                <p class="text-muted small">Sport | 90L | Manual | 2 People</p>
-                                <p class="price">$99.00 <span class="old-price">$100.00</span> / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </header>
+
+
+
+    <!--  Popular cars-->
+    <section class="container-fluid p-5" id="popular-cars">
+        <div class="row">
+            <div class="col-lg-11">
+                <h2 class="plus-jakarta-sans-semi-bold">Popular Car</h2>
+            </div>
+            <div class="col-lg-1">
+                <a href="http://">View All</a>
+            </div>
+        </div>
+
+
+
+
+        <div class="row mt-4">
+
+
+            <!-- Car1 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Koenigsegg</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
                             </div>
                         </div>
+
+
+                        <img src="Assets/Koenigsegg.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="card p-3 position-relative">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">Nissan GT - R</h6>
-                                <p class="text-muted small">Sport | 80L | Manual | 2 People</p>
-                                <p class="price">$80.00 <span class="old-price">$100.00</span> / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card p-3 position-relative">
-                            <span class="heart">♥</span>
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">Rolls - Royce</h6>
-                                <p class="text-muted small">Sedan | 70L | Manual | 4 People</p>
-                                <p class="price">$96.00 / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3">
-                        <div class="card p-3 position-relative">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">Nissan GT - R</h6>
-                                <p class="text-muted small">Sport | 80L | Manual | 2 People</p>
-                                <p class="price">$80.00 / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recommendation Cars -->
-                <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
-                    <h5 class="fw-bold">Recommendation Car</h5>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-3">
-                        <div class="card p-3">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">All New Rush</h6>
-                                <p class="text-muted small">SUV | 70L | Manual | 6 People</p>
-                                <p class="price">$72.00 <span class="old-price">$80.00</span> / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-3">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">CR - V</h6>
-                                <p class="text-muted small">SUV | 80L | Manual | 6 People</p>
-                                <p class="price">$80.00 / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-3">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">All New Terios</h6>
-                                <p class="text-muted small">SUV | 90L | Manual | 6 People</p>
-                                <p class="price">$74.00 / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card p-3">
-                            <img src="https://via.placeholder.com/250x120" class="card-img-top" alt="car">
-                            <div class="card-body text-center">
-                                <h6 class="fw-bold">CR - V</h6>
-                                <p class="text-muted small">SUV | 80L | Manual | 6 People</p>
-                                <p class="price">$80.00 / day</p>
-                                <button class="btn rent-btn w-100">Rent Now</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
 
 
 
+            <!-- Car 2 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-regular fa-heart" style="font-size:1.5rem;"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 2">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Car 3 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Rolls - Royce</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sedan</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/Rolls-Royce.png" class="card-img p-1" alt="Car 3">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- Car 4 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
 
 
 
@@ -310,11 +718,839 @@
 
 
 
+    </section>
+
+
+
+    <!-- recomendation cars -->
+    <section class="container-fluid p-5" id="Recomendation-Car">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="plus-jakarta-sans-semi-bold text-muted">Recomendation Car</h2>
+            </div>
+        </div>
 
 
 
 
-    </header>
+        <div class="row mt-4">
+            <!-- Car1 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Koenigsegg</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/Koenigsegg.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <!-- Car 2 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-regular fa-heart" style="font-size:1.5rem;"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 2">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- Car 3 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Rolls - Royce</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sedan</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/Rolls-Royce.png" class="card-img p-1" alt="Car 3">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <!-- Car 4 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+             <!-- Car 5 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+             <!-- Car 5 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+              <!-- Car 6 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            
+              <!-- Car 7 -->
+            <div class="col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm rounded p-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5 class="card-title plus-jakarta-sans-bold">Nissan GT - R</h5>
+                                <h6 class="card-subtitle mb-2 text-muted plus-jakarta-sans-regular">Sport</h6>
+
+                            </div>
+
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <i class="fa-solid fa-heart" style="font-size:1.5rem; color:red"></i>
+                            </div>
+                        </div>
+
+
+                        <img src="Assets/NissanGT-R.png" class="card-img p-1" alt="Car 1">
+
+
+                        <!-- car details  -->
+                        <div class="row p-1">
+                            <div class="col-lg-3">
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/petrol.png" alt="petrolicon" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">90L</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <img src="Assets/manual.png" alt="manual" style="width: 20px;height: 20px;">
+
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <p class="text-muted">Manual</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-5">
+
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <img src="Assets/people.png" alt="people" style="width: 20px;height: 20px;">
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-muted">2 People</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <!--price and rent button  -->
+                        <div class="row p-2">
+                            <div class="col-lg-6">
+                                <span class="h4 fw-bold m-0 p-0">$99.00/</span>
+                                <span class="text-muted">day</span>
+                            </div>
+                            <div class="col-lg-6 d-flex justify-content-end">
+                                <button class="btn btn-primary">
+                                    Rent Now
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            
+            
+           
+
+            
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+       <div class="view d-flex justify-content-center m-3 align-content-center">
+        <button class="btn btn-outline-primary">Show More cars</button>
+       </div>
+
+
+    </section>
+
+
+
+
+
+
+    <!-- footer -->
+
+<footer class="bg-light pt-5 pb-3 border-top">
+  <div class="container">
+    <div class="row">
+      <!-- Logo + Description -->
+      <div class="col-md-4 mb-4">
+        <h4 class="fw-bold text-primary">MORENT</h4>
+        <p class="text-muted">
+          Our vision is to provide convenience <br>
+          and help increase your sales business.
+        </p>
+      </div>
+
+      <!-- About -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold">About</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-muted text-decoration-none">How it works</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Featured</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Partnership</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Business Relation</a></li>
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold">Community</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-muted text-decoration-none">Events</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Podcast</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Invite a friend</a></li>
+        </ul>
+      </div>
+
+      <!-- Socials -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold">Socials</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-muted text-decoration-none">Discord</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Instagram</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Twitter</a></li>
+          <li><a href="#" class="text-muted text-decoration-none">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Bottom -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <p class="mb-0 text-muted">©2022 MORENT. <span class="fw-bold">All rights reserved</span></p>
+      <div class="mt-2 mt-md-0">
+        <a href="#" class="text-muted text-decoration-none me-3">Privacy & Policy</a>
+        <a href="#" class="text-muted text-decoration-none">Terms & Condition</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 
 
@@ -335,6 +1571,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!-- custom js -->
+    <script src="js/script.js"></script>
 </body>
 
 </html>

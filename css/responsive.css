@@ -1,0 +1,25 @@
+/* Tablet (stack vertically with smaller height) */
+@media (max-width: 992px) {
+  .leftimg,
+  .rightimg {
+    min-height: 30dvh;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .leftimg,
+  .rightimg {
+    min-height: 25dvh;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .leftimg h1,
+  .rightimg h1 {
+    font-size: 1.5rem;
+  }
+  .leftimg p,
+  .rightimg p {
+    font-size: 0.9rem;
+  }
+}

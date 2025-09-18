@@ -14,7 +14,7 @@
 .button {
   background-color: #ffffff00;
   color: #fff;
-  width: 7.9em;
+  width: 9.9em;
   height: 2.9em;
   border: var(--primary-500) 0.1em solid;
   border-radius: 11px;
@@ -129,51 +129,73 @@
 
 
 
-.leftimg {
-  background: url("../Assets/leftimg.png") no-repeat center/cover ;
+.leftimg,
+.rightimg {
+  border-radius: 0.75rem;
+  min-height: 30rem;
+  background-origin: content-box;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
+
+
+
+.leftimg {
+  background: url("../Assets/leftimg.png") no-repeat center/cover;
+}
+
 .rightimg {
   background: url("../Assets/rightimg.png") no-repeat center/cover;
+
 }
 
 
- .card {
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      border-radius: 10px;
-    }
-    .price {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #000;
-    }
-    .old-price {
-      text-decoration: line-through;
-      color: #999;
-      font-size: 0.9rem;
-      margin-left: 5px;
-    }
-    .heart {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      color: red;
-      cursor: pointer;
-    }
-    .rent-btn {
-      background: #007bff;
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 500;
-    }
+.filter-bar {
+
+  margin: 0rem 0rem 0.625rem 0.5rem;
+  background:var(--primary-0);
+
+}
+
+.filter-item {
+  border-right: 2px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.filter-item:last-child {
+  border-right: none;
+}
+
+.filter-label {
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+  display: block;
+}
+
+select.form-select {
+  border: none;
+  padding-left: 0;
+  box-shadow: none !important;
+  color: #3171a8;
+}
+
+.form-select option {
+  padding: 1rem;
+  margin: 1rem;
+  color: #000;
+}
+
+
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #0d67b6;
+}
 
 
 
@@ -181,3 +203,48 @@
 
 
 
+
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  border-radius: 10px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 5px;
+}
+
+.heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: red;
+  cursor: pointer;
+}
+
+.rent-btn {
+  background: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 500;
+}
