@@ -1,4 +1,5 @@
-  flatpickr("#datepicker", {
+alert("hi");
+flatpickr("#datepicker", {
     dateFormat: "Y-m-d",   
     allowInput: true,      
     defaultDate: null,     
