@@ -1,4 +1,4 @@
-alert("hi");
+// Initialize Flatpickr for date selection
 flatpickr("#datepicker", {
     dateFormat: "Y-m-d",   
     allowInput: true,      
