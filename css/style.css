@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+  padding-top: 55px;
+  overflow-x: hidden;
 }
 
 .logo_img {
@@ -157,7 +163,7 @@
 .filter-bar {
 
   margin: 0rem 0rem 0.625rem 0.5rem;
-  background:var(--primary-0);
+  background: var(--primary-0);
 
 }
 
@@ -247,4 +253,39 @@ select.form-select {
   color: #fff;
   border-radius: 10px;
   font-weight: 500;
+}
+
+
+
+
+
+
+
+
+.login-container {
+  background: url(../Assets/background.png) center no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+
+
+
+
+.social-btn {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #fff;
+}
+
+.social-btn img {
+  width: 20px;
+  height: 20px;
 }

@@ -33,11 +33,11 @@
 
 </head>
 
-<body>
+<body style="background-color: #F6F7F9;">
 
     <header id="header" class="p-2">
         <!-- Navbar  -->
-        <nav class="navbar navbar-expand-lg bg-primary-0 sticky-lg-top shadow-none">
+        <nav class="navbar navbar-expand-lg bg-primary-0 fixed-top shadow-none">
             <div class="container-fluid">
                 <!-- logo -->
                 <a class="navbar-brand" href="#header"><img src="Assets/logo.png" alt="Logo" class="logo_img">
@@ -55,19 +55,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link active plus-jakarta-sans-semi-bold" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active plus-jakarta-sans-semi-bold" aria-current="page"
+                                href="#header">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#">Vehicles</a>
+                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#vehicles">Vehicles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#">Details</a>
+                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#details">Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#">About Us</a>
+                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#about">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#">Contact Us</a>
+                            <a class="nav-link plus-jakarta-sans-semi-bold" href="#contact">Contact Us</a>
                         </li>
 
 
@@ -77,24 +78,20 @@
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2 mb-lg-0">
 
-                        <button class="button ">
-
-
+                        <!-- Register Button -->
+                        <button class="button" onclick="location.href='registration.html'">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
                             </svg>
-
-
                             <div class="regtxt plus-jakarta-sans-semi-bold">
                                 Register
                             </div>
-
                         </button>
 
-                        <button class="Btn">
-
+                        <!-- Login Button -->
+                        <a class="Btn" href="login.html">
                             <div class="sign"><svg viewBox="0 0 512 512">
                                     <path
                                         d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
@@ -102,28 +99,17 @@
                                 </svg></div>
 
                             <div class="text plus-jakarta-sans-semi-bold">Login</div>
-                        </button>
-
-
-
-
+                        </a>
                     </div>
-
-
                 </div>
-
             </div>
         </nav>
 
 
         <!-- Hero Content -->
-
-        <div class="container-fluid p-5 w-100" style="background-color: #F6F7F9;">
-
-
+        <div class="container-fluid p-5 w-100" style="background-color: #F6F7F9;" id="details">
 
             <!-- hero image -->
-
             <div class="row g-4 justify-content-around w-100">
                 <div class="col-lg-5 leftimg  p-5 rounded-3 ">
 
@@ -280,41 +266,12 @@
 
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </header>
 
 
 
     <!--  Popular cars-->
-    <section class="container-fluid p-5" id="popular-cars">
+    <section class="container-fluid p-5" id="vehicles">
         <div class="row">
             <div class="col-lg-11">
                 <h2 class="plus-jakarta-sans-semi-bold">Popular Car</h2>
@@ -1494,7 +1451,7 @@
 
     <!-- footer -->
 
-    <footer class="bg-light pt-5 pb-3 border-top">
+    <footer class="bg-light pt-5 pb-3 border-top" id="contact">
         <div class="container">
             <div class="row">
                 <!-- Logo + Description -->
@@ -1507,7 +1464,7 @@
                 </div>
 
                 <!-- About -->
-                <div class="col-6 col-md-2 mb-4">
+                <div class="col-6 col-md-2 mb-4" id="about">
                     <h6 class="fw-bold">About</h6>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-muted text-decoration-none">How it works</a></li>
