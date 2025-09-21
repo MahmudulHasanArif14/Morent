@@ -3,11 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-  padding-top: 55px;
   overflow-x: hidden;
 }
 
@@ -289,3 +288,89 @@ select.form-select {
   width: 20px;
   height: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+        }
+        
+      
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 90px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        }
+
+     
+        
+        .sidebar .nav-link {
+            color: #5a5a5a;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .nav-link i {
+            font-size: 1.2rem;
+            margin-right: 0.75rem;
+            width: 24px; /* Fixed width for icon alignment */
+            text-align: center;
+        }
+        
+        .sidebar .nav-link.active,
+        .sidebar .nav-link:hover {
+            color: #0d6efd;
+            background-color: #e7f1ff;
+            border-radius: 0.5rem;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 0.75rem;
+        }
+        
+        .mobile-navbar {
+            height: 60px;
+        }
+   
