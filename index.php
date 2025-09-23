@@ -1542,3 +1542,8 @@
 </body>
 
 </html>
+
+<?php
+    include('dbconfig.php');
+
+?>
