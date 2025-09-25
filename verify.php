@@ -67,7 +67,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-none">
         <div class="container-fluid">
             <!-- logo -->
-            <a class="navbar-brand" href="index.html"><img src="Assets/logo.png" alt="Logo" class="logo_img" />
+            <a class="navbar-brand" href="index.php"><img src="Assets/logo.png" alt="Logo" class="logo_img" />
             </a>
             <!-- Navbar toggler for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" aria-expanded="false"
@@ -79,20 +79,20 @@
                 <ul class="navbar-nav m-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active plus-jakarta-sans-semi-bold" aria-current="page"
-                            href="index.html">Home</a>
+                            href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#vehicles">Vehicles</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#vehicles">Vehicles</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#details">Details</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#details">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#about">About Us</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#contact">Contact Us</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>

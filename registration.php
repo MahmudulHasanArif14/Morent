@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-none">
         <div class="container-fluid">
             <!-- logo -->
-            <a class="navbar-brand" href="index.html"><img src="Assets/logo.png" alt="Logo" class="logo_img">
+            <a class="navbar-brand" href="index.php"><img src="Assets/logo.png" alt="Logo" class="logo_img">
             </a>
             <!-- Navbar toggler for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -36,19 +36,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
-                        <a class="nav-link active plus-jakarta-sans-semi-bold" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active plus-jakarta-sans-semi-bold" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#vehicles">Vehicles</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#vehicles">Vehicles</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#details">Details</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#details">Details</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#about">About Us</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#about">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.html#contact">Contact Us</a>
+                        <a class="nav-link plus-jakarta-sans-semi-bold" href="index.php#contact">Contact Us</a>
                     </li>
 
 
@@ -72,8 +72,11 @@
 
     <!-- Header -->
     <header class="login-container">
-        <form action="" method="post">
+        <form action="validateregistration.php" method="post">
             <div class="container min-vh-100 d-flex align-items-center justify-content-center ">
+
+
+
                 <div class="row w-100 m-3">
 
                     <!-- Left Section -->
@@ -81,9 +84,24 @@
                         <img src="Assets/boy.png" alt="Login Illustration" class="img-fluid" style="max-height: 800px;">
                     </div>
 
+                   
                     <!-- Right Section -->
-                    <div class="col-md-6 d-flex align-items-center justify-content-center p-5 mb-5">
+                    <div class="col-md-6 d-flex flex-column align-items-center justify-content-center pt-0 mb-5">
+                         <?php if (isset($_REQUEST['error'])) {
+                            // from url take the as input
+                            $error = htmlspecialchars($_REQUEST['error']);
+                            echo '
+                <div class="container pt-1">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> ' . $error . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+                ';
+                        }
+                        ?>  
                         <div class="login-card h-100 card p-4 p-md-5 shadow-sm">
+                            
                             <div class="mb-4">
                                 <h4 class="fw-bold text-primary mb-3">MORENT</h4>
                             </div>
@@ -96,11 +114,11 @@
                                 <!-- name -->
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label fw-bolder">First Name</label>
-                                    <input type="text" class="form-control" placeholder="First Name">
+                                    <input type="text" class="form-control" placeholder="First Name" name="first_name" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bolder">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Last Name">
+                                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
                                 </div>
 
 
@@ -111,32 +129,32 @@
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-2">
                                     <label class="form-label fw-bolder">Email</label>
-                                    <input type="email" class="form-control" placeholder="Email">
+                                    <input type="email" class="form-control" placeholder="Email" name="email" require>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label fw-bolder">Phone Number</label>
-                                    <input type="text" class="form-control" placeholder="Phone Number">
+                                    <input type="text" class="form-control" placeholder="Phone Number" name="phone">
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="••••••••••••">
+                                    <input type="password" class="form-control" placeholder="••••••••••••" name="password">
                                     <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Password</label>
+                                <label class="form-label">Confirm Password</label>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="••••••••••••">
+                                    <input type="password" class="form-control" placeholder="••••••••••••" name="confirm_password">
                                     <span class="input-group-text"><i class="bi bi-eye-slash"></i></span>
                                 </div>
                             </div>
 
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="termsCheck">
+                                <input class="form-check-input" type="checkbox" value="1" id="termsCheck" name="terms" required>
                                 <label class="form-check-label" for="termsCheck">
                                     I agree to all the <a href="#" class="text-danger">Terms</a> and <a href="#"
                                         class="text-danger">Privacy
@@ -147,10 +165,10 @@
 
 
                             <!-- Login Button -->
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+                            <button type="submit" class="btn btn-primary w-100 mb-3" name="register">Register</button>
 
                             <!-- Signup -->
-                            <p class="text-center small">Already have an account? <a href="login.html">Sign in</a></p>
+                            <p class="text-center small">Already have an account? <a href="login.php">Sign in</a></p>
 
                             <!-- Divider -->
                             <div class="d-flex align-items-center my-3">
@@ -162,13 +180,13 @@
                             <!-- Social Buttons -->
                             <div class="d-flex gap-2 justify-content-center">
                                 <button class="social-btn"><img
-                                        src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="">
+                                        src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="facebook">
                                     Facebook</button>
                                 <button class="social-btn"><img
-                                        src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="">
+                                        src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="google">
                                     Google</button>
                                 <button class="social-btn"><img
-                                        src="https://cdn-icons-png.flaticon.com/512/831/831276.png" alt="">
+                                        src="https://cdn-icons-png.flaticon.com/512/831/831276.png" alt="apple">
                                     Apple</button>
                             </div>
                         </div>

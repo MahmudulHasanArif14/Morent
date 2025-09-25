@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-none">
       <div class="container-fluid">
         <!-- logo -->
-        <a class="navbar-brand" href="index.html"
+        <a class="navbar-brand" href="index.php"
           ><img src="Assets/logo.png" alt="Logo" class="logo_img" />
         </a>
         <!-- Navbar toggler for mobile view -->
@@ -39,14 +39,14 @@
               <a
                 class="nav-link active plus-jakarta-sans-semi-bold"
                 aria-current="page"
-                href="index.html"
+                href="index.php"
                 >Home</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link plus-jakarta-sans-semi-bold"
-                href="index.html#vehicles"
+                href="index.php#vehicles"
                 >Vehicles</a
               >
             </li>
@@ -54,21 +54,21 @@
             <li class="nav-item">
               <a
                 class="nav-link plus-jakarta-sans-semi-bold"
-                href="index.html#details"
+                href="index.php#details"
                 >Details</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link plus-jakarta-sans-semi-bold"
-                href="index.html#about"
+                href="index.php#about"
                 >About Us</a
               >
             </li>
             <li class="nav-item">
               <a
                 class="nav-link plus-jakarta-sans-semi-bold"
-                href="index.html#contact"
+                href="index.php#contact"
                 >Contact Us</a
               >
             </li>
@@ -156,7 +156,7 @@
 
                 <!-- Signup -->
                 <p class="text-center small">
-                  Don’t have an account? <a href="registration.html">Sign up</a>
+                  Don’t have an account? <a href="registration.php">Sign up</a>
                 </p>
 
                 <!-- Divider -->
