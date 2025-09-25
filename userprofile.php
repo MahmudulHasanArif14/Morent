@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile - Sylhet Car Rentals</title>
+    <title>User Profile - Morent Car Rentals</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-light  bg-primary-0 d-md-none p-3 mobile-navbar fixed-top">
 
         <!--Mobile Navbar Logo  -->
-        <h4 class="fw-bold text-primary" onclick="location.href='index.php'" style="cursor: pointer;">MORENT</h4>
+        <h4 class="fw-bold text-primary" onclick="location.href='homepage.php'" style="cursor: pointer;">MORENT</h4>
 
         <!-- Hamburger Icon On mobile device -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
@@ -42,7 +42,7 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-1">
                     <!--Sidebar Logo  -->
-                    <h4 class="fw-bold text-primary px-3 d-md-block d-none mb-4 " onclick="location.href='index.php'" style="cursor: pointer;">MORENT</h4>
+                    <h4 class="fw-bold text-primary px-3 d-md-block d-none mb-4 " onclick="location.href='homepage.php'" style="cursor: pointer;">MORENT</h4>
 
                     <!-- Navbar Item -->
                     <div class="nav  flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -465,6 +465,39 @@ editBtn.addEventListener("click", function () {
     cardBody.querySelectorAll("p").forEach(p => {
         p.classList.add("d-none");
     });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get current URL hash
+    const hash = window.location.hash;
+
+    if (hash) {
+        // Find the corresponding tab button
+        const tabTrigger = document.querySelector('#v-pills-tab a[href="' + hash + '"]');
+        if (tabTrigger) {
+            // Activating the tab
+            const tab = new bootstrap.Tab(tabTrigger);
+            tab.show();
+
+          
+            const tabContent = document.querySelector(hash);
+            if (tabContent) {
+                tabContent.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }
 });
 
 </script>

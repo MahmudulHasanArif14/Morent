@@ -1,3 +1,22 @@
+<?php
+session_start();
+include 'dbconfig.php';
+
+
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php?error=" . urlencode("Login to access the homepage."));
+    exit;
+}
+
+
+$showModal = isset($_GET['success']) && $_GET['success'] == 1;
+
+// Check for error message
+$error = $_GET['error'] ?? '';
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -36,37 +55,36 @@
 <body style="background-color: #F6F7F9; padding-top: 55px;">
 
     <header id="header" class="p-2">
-                <!-- Navbar  -->
-         <nav class="navbar navbar-expand-lg bg-primary-0 fixed-top shadow-none">
-        <div class="container-fluid">
-            <!-- logo -->
-            <a class="navbar-brand" href="#header"><img src="Assets/logo.png" alt="Logo" class="logo_img"></a>
-    
-            <!-- Navbar toggler for mobile view -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-    
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Center Nav Links -->
-                <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item"><a class="nav-link active plus-jakarta-sans-semi-bold" href="#header">Home</a></li>
-                    <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#vehicles">Vehicles</a></li>
-                    <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#details">Details</a></li>
-                    <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#contact">Contact Us</a></li>
-                </ul>
-    
-                <!-- Right Side Buttons -->
-                <div class="d-flex align-items-center gap-3">
-                    <!-- Icon Buttons + Avatar -->
+        <!-- Navbar  -->
+        <nav class="navbar navbar-expand-lg bg-primary-0 fixed-top shadow-none">
+            <div class="container-fluid">
+                <!-- logo -->
+                <a class="navbar-brand" href="#header"><img src="Assets/logo.png" alt="Logo" class="logo_img"></a>
+
+                <!-- Navbar toggler for mobile view -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Center Nav Links -->
+                    <ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item"><a class="nav-link active plus-jakarta-sans-semi-bold" href="#header">Home</a></li>
+                        <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#vehicles">Vehicles</a></li>
+                        <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#details">Details</a></li>
+                        <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link plus-jakarta-sans-semi-bold" href="#contact">Contact Us</a></li>
+                    </ul>
+
+                    <!-- Right Side Buttons -->
                     <div class="d-flex align-items-center gap-3">
-                        <!-- Heart -->
+
+                        <!-- Heart Button -->
                         <button class="btn btn-light rounded-circle p-2">
                             <i class="bi bi-heart-fill text-secondary"></i>
                         </button>
-    
+
                         <!-- Bell with notification -->
                         <div class="position-relative">
                             <button class="btn btn-light rounded-circle p-2">
@@ -75,19 +93,27 @@
                             <span
                                 class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
                         </div>
-    
-                        <!-- Settings -->
-                        <button class="btn btn-light rounded-circle p-2">
-                            <i class="bi bi-gear-fill text-secondary"></i>
-                        </button>
-    
-                        <!-- Avatar -->
-                        <img src="https://avatar.iran.liara.run/public" alt="User" class="rounded-circle" width="40" height="40">
+
+                        <!-- User Avatar with Dropdown -->
+                        <div class="dropdown">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://avatar.iran.liara.run/public" alt="User" class="rounded-circle" width="40" height="40">
+                            </a>
+                            <ul class="dropdown-menu px-2 dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="userprofile.php">Profile</a></li>
+                                <li><a class="dropdown-item" href="userprofile.php#personal-info">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="text-center btn btn-danger ms-2" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
-        </div>
-          </nav>
+        </nav>
 
 
 

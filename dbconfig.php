@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "<script>alert('Database connected successfully');</script>";
+// echo "<script>alert('Database connected successfully');</script>";
 
 
 

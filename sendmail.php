@@ -25,7 +25,7 @@ function sendMail($recipient, $subject, $body) {
         $mail->send();
         return true;
     } catch (Exception $e) {
-        return "Mailer Error: {$mail->ErrorInfo}";
+        return "Sending OTP Error: {$mail->ErrorInfo}";
     }
 }
 
