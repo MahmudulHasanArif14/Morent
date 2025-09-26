@@ -1,3 +1,27 @@
+<?php
+session_start();
+include 'dbconfig.php';
+
+
+if (!isset($_SESSION['email']) || empty($_SESSION['email']) || !isset($_SESSION['isLogedIN']) || $_SESSION['isLogedIN'] !== true) {
+    header("Location: login.php?error=" . urlencode("Login to access the Userprofile."));
+    exit;
+}
+
+$userEmail = $_SESSION['email'];
+
+// Fetch user info
+$result = mysqli_query($conn, "SELECT * FROM `userinfo` WHERE `Email`='$userEmail'");
+$user = mysqli_fetch_assoc($result);
+
+if (!$user) {
+    echo "User not found.";
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,26 +103,64 @@
                         </a>
 
 
-                        <a class="nav-link mt-4" href="#">
+                        <!-- Delete Account Button -->
+                        <a class="nav-link mt-4 text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                            <i class="bi bi-trash"></i>
+                            Delete Account
+                        </a>
+
+                        <a class="nav-link mt-4" href="logout.php">
                             <i class="bi bi-box-arrow-left"></i>
                             Log Out
                         </a>
+
 
 
                     </div>
                 </div>
             </nav>
 
+            <!-- Delete Account Modal -->
+            <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Delete Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete your account? This action cannot be undone.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="delete_account.php" class="btn btn-danger">Delete Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Main Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-5 m-0">
 
-                <!-- Profile Header -->
                 <div class="card p-5 mb-4 bg-light shadow-sm">
                     <div class="d-flex align-items-center">
-                        <img src="https://placehold.co/100x100/EFEFEF/333333?text=Arif"
-                            class="rounded-circle profile-avatar" alt="User Avatar">
+                        <form action="upload_avatar.php" method="post" enctype="multipart/form-data">
+                            <?php
+                            $name=$user['FirstName'];
+                            // Fetch avatar from DB
+                            $avatar = !empty($user['Avatar']) ? $user['Avatar'] : "https://placehold.co/100x100/EFEFEF/333333?text=$name";
+                            ?>
+                            <div class="position-relative">
+                                <img src="<?php echo htmlspecialchars($avatar); ?>" class="rounded-circle profile-avatar" alt="User Avatar" style="width:100px;height:100px;">
+                                <label for="avatarUpload" class="position-absolute bottom-0 end-0" style="font-size: 20px;">
+                                    <i class="bi bi-camera-fill"></i>
+                                </label>
+                                <input type="file" id="avatarUpload" name="avatar" style="display:none;" onchange="this.form.submit()">
+                            </div>
+                        </form>
                         <div class="ms-4">
-                            <h2 class="h5 h4-md mb-1 plus-jakarta-sans-semi-bold ">Arif</h2>
+                            <h2 class="h5 h4-md mb-1 plus-jakarta-sans-semi-bold"><?php echo htmlspecialchars($user['FirstName']); ?></h2>
                             <span class="badge bg-warning text-dark me-2">Gold Member</span>
                             <span class="text-muted d-block d-sm-inline">Points: 1,450</span>
                         </div>
@@ -247,44 +309,68 @@
                         </div>
                     </div>
 
-                    <!-- Personal Info Section -->
-                    <div class="tab-pane fade" id="personal-info" role="tabpanel"
-                        aria-labelledby="v-pills-personal-tab">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0">Personal Information</h5>
-                                <button class="btn btn-primary btn-sm infoedit"><i class="bi bi-pencil-square me-1"></i>
-                                    Edit</button>
-                                <button class="btn  bg-success text-light btn-sm savebtn d-none "><i class="bi bi-floppy mx-1"></i>
-                                    Save</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <strong>Full Name</strong>
-                                        <input type="text" class="form-control text-muted mb-0 d-none" name="fullName" value="John Doe">
-                                        <p class="text-muted mb-0">John Doe</p>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <strong>Email Address</strong>
-                                        <input type="email" class="form-control text-muted mb-0 d-none" name="email" value="j.doe@email.com">
-                                        <p class="text-muted mb-0">j.doe@email.com <span
-                                                class="badge bg-success">Verified</span></p>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <strong>Phone Number</strong>
-                                        <input type="text" class="form-control text-muted mb-0 d-none" name="phone" value="+1 (555) 123-4567">
-                                        <p class="text-muted mb-0">+1 (555) 123-4567</p>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <strong>Home Address</strong>
-                                        <input type="text" class="form-control text-muted mb-0 d-none" name="address" value="123 Main Street, Anytown, USA">
-                                        <p class="text-muted mb-0">123 Main Street, Anytown, USA</p>
-                                    </div>
+                    <!-- Success Modal -->
+                    <div class="modal fade" id="updateSuccessModal" tabindex="-1" aria-labelledby="updateSuccessLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content border-0 shadow-sm">
+                                <div class="modal-header bg-success text-white">
+                                    <h5 class="modal-title" id="updateSuccessLabel">Success</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Profile updated successfully.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    <!-- Personal Info Section -->
+                    <form action="update.php" method="post">
+                        <div class="tab-pane fade" id="personal-info" role="tabpanel"
+                            aria-labelledby="v-pills-personal-tab">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Personal Information</h5>
+                                    <button class="btn btn-primary btn-sm infoedit" type="button"><i class="bi bi-pencil-square me-1"></i>
+                                        Edit</button>
+                                    <button class="btn  bg-success text-light btn-sm savebtn d-none " type="submit" name="save"><i class="bi bi-floppy mx-1"></i>
+                                        Save</button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <strong>Full Name</strong>
+                                            <?php $fullName = $user['FirstName'] . ' ' . $user['LastName']; ?>
+                                            <input type="text" class="form-control text-muted mb-0 d-none" name="fullName" value="<?php echo htmlspecialchars($fullName); ?>">
+                                            <p class="text-muted mb-0"><?php echo htmlspecialchars($fullName); ?></p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <strong>Email Address</strong>
+                                            <input type="email" class="form-control text-muted mb-0 d-none" name="email" value="<?php echo htmlspecialchars($user['Email']); ?>">
+                                            <p class="text-muted mb-0"><?php echo htmlspecialchars($user['Email']); ?> <span
+                                                    class="badge bg-success">Verified</span></p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <strong>Phone Number</strong>
+                                            <input type="text" class="form-control text-muted mb-0 d-none" name="phone" value="<?php echo htmlspecialchars($user['PhoneNumber']); ?>">
+                                            <p class="text-muted mb-0"><?php echo htmlspecialchars($user['PhoneNumber']); ?></p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <strong>Home Address</strong>
+                                            <input type="text" class="form-control text-muted mb-0 d-none" name="address" value="<?php echo htmlspecialchars($user['HomeAddress']); ?>">
+                                            <p class="text-muted mb-0"><?php echo htmlspecialchars($user['HomeAddress']); ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
 
                     <!-- Documents Section -->
                     <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="v-pills-documents-tab">
@@ -391,116 +477,133 @@
         crossorigin="anonymous"></script>
 
 
-<script>
-  const dropArea = document.getElementById("drop-area");
-  const fileInput = document.getElementById("fileInput");
-  const uploadIcon = document.getElementById("uploadIcon");
-
-  
-  uploadIcon.addEventListener("click", () => fileInput.click());
-
-  // Drag over effect
-  dropArea.addEventListener("dragover", (e) => {
-    e.preventDefault(); // this will help to close the open file when we drag over
-    dropArea.classList.add("border-primary", "bg-light");
-  });
-
-  // Remove effect when leaving drag area
-  dropArea.addEventListener("dragleave", () => {
-    dropArea.classList.remove("border-primary", "bg-light");
-  });
-
-  // Handle drop
-  dropArea.addEventListener("drop", (e) => {
-    e.preventDefault();
-    dropArea.classList.remove("border-primary", "bg-light");
-    console.log("File dropped");
-    console.log(e);
-    const files = e.dataTransfer.files;
-    handleFiles(files);
-  });
-
-  // Handle file selection via input
-  fileInput.addEventListener("change", () => {
-    handleFiles(fileInput.files);
-  });
-
-  // Function to handle files
-  function handleFiles(files) {
-    for (let file of files) {
-      console.log("Selected file:", file.name);
-     
-    }
-  }
+    <script>
+        const dropArea = document.getElementById("drop-area");
+        const fileInput = document.getElementById("fileInput");
+        const uploadIcon = document.getElementById("uploadIcon");
 
 
-  //personal info edit button functionality
-const editBtn = document.querySelector("#personal-info .infoedit"); 
-editBtn.addEventListener("click", function () {
-    const cardBody = document.querySelector("#personal-info .card-body");
+        uploadIcon.addEventListener("click", () => fileInput.click());
 
-    editBtn.classList.add("d-none");
-    const saveBtn = document.querySelector("#personal-info .savebtn");
-    saveBtn.classList.remove("d-none");
-    
-    saveBtn.addEventListener("click", function () {
-        cardBody.querySelectorAll("input").forEach(input => {
-            input.classList.add("d-none");
-            input.classList.remove("d-block");
-        });
-        cardBody.querySelectorAll("p").forEach(p => {
-            p.classList.remove("d-none");
+        // Drag over effect
+        dropArea.addEventListener("dragover", (e) => {
+            e.preventDefault(); // this will help to close the open file when we drag over
+            dropArea.classList.add("border-primary", "bg-light");
         });
 
-        editBtn.classList.remove("d-none");
-        saveBtn.classList.add("d-none");
-    });
+        // Remove effect when leaving drag area
+        dropArea.addEventListener("dragleave", () => {
+            dropArea.classList.remove("border-primary", "bg-light");
+        });
 
-    cardBody.querySelectorAll("input").forEach(input => {
-        input.classList.remove("d-none");
-        input.classList.add("d-block");
-    });
-   
+        // Handle drop
+        dropArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropArea.classList.remove("border-primary", "bg-light");
+            console.log("File dropped");
+            console.log(e);
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
 
-    cardBody.querySelectorAll("p").forEach(p => {
-        p.classList.add("d-none");
-    });
-});
+        // Handle file selection via input
+        fileInput.addEventListener("change", () => {
+            handleFiles(fileInput.files);
+        });
 
+        // Function to handle files
+        function handleFiles(files) {
+            for (let file of files) {
+                console.log("Selected file:", file.name);
 
-
-
-
-
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Get current URL hash
-    const hash = window.location.hash;
-
-    if (hash) {
-        // Find the corresponding tab button
-        const tabTrigger = document.querySelector('#v-pills-tab a[href="' + hash + '"]');
-        if (tabTrigger) {
-            // Activating the tab
-            const tab = new bootstrap.Tab(tabTrigger);
-            tab.show();
-
-          
-            const tabContent = document.querySelector(hash);
-            if (tabContent) {
-                tabContent.scrollIntoView({ behavior: "smooth" });
             }
         }
-    }
-});
 
-</script>
+
+        //personal info edit button functionality
+        const editBtn = document.querySelector("#personal-info .infoedit");
+        editBtn.addEventListener("click", function() {
+            const cardBody = document.querySelector("#personal-info .card-body");
+
+            editBtn.classList.add("d-none");
+            const saveBtn = document.querySelector("#personal-info .savebtn");
+            saveBtn.classList.remove("d-none");
+
+            saveBtn.addEventListener("click", function() {
+                cardBody.querySelectorAll("input").forEach(input => {
+                    input.classList.add("d-none");
+                    input.classList.remove("d-block");
+                });
+                cardBody.querySelectorAll("p").forEach(p => {
+                    p.classList.remove("d-none");
+                });
+
+                editBtn.classList.remove("d-none");
+                saveBtn.classList.add("d-none");
+            });
+
+            cardBody.querySelectorAll("input").forEach(input => {
+                input.classList.remove("d-none");
+                input.classList.add("d-block");
+            });
+
+
+            cardBody.querySelectorAll("p").forEach(p => {
+                p.classList.add("d-none");
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get current URL hash
+            const hash = window.location.hash;
+
+            if (hash) {
+                // Find the corresponding tab button
+                const tabTrigger = document.querySelector('#v-pills-tab a[href="' + hash + '"]');
+                if (tabTrigger) {
+                    // Activating the tab
+                    const tab = new bootstrap.Tab(tabTrigger);
+                    tab.show();
+
+
+                    const tabContent = document.querySelector(hash);
+                    if (tabContent) {
+                        tabContent.scrollIntoView({
+                            behavior: "smooth"
+                        });
+                    }
+                }
+            }
+        });
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check URL for parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('update_success')) {
+                // Show Bootstrap modal
+                const successModal = new bootstrap.Modal(document.getElementById('updateSuccessModal'));
+                successModal.show();
+
+                // Remove parameter from URL without reloading
+                history.replaceState(null, '', window.location.pathname + window.location.hash);
+            }
+        });
+    </script>
 
 
 

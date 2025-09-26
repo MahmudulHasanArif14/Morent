@@ -3,16 +3,13 @@ session_start();
 include 'dbconfig.php';
 
 
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['email']) || empty($_SESSION['email']) || !isset($_SESSION['isLogedIN']) || $_SESSION['isLogedIN'] !== true) {
     header("Location: login.php?error=" . urlencode("Login to access the homepage."));
     exit;
 }
 
 
-$showModal = isset($_GET['success']) && $_GET['success'] == 1;
 
-// Check for error message
-$error = $_GET['error'] ?? '';
 ?>
 
 
@@ -105,7 +102,7 @@ $error = $_GET['error'] ?? '';
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="text-center btn btn-danger ms-2" href="#">Logout</a></li>
+                                <li><a class="text-center btn btn-danger ms-2" href="logout.php">Logout</a></li>
                             </ul>
                         </div>
 
@@ -371,7 +368,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -463,7 +460,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -553,7 +550,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -644,7 +641,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -777,7 +774,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -869,7 +866,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -959,7 +956,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -1050,7 +1047,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -1142,7 +1139,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -1234,7 +1231,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -1324,7 +1321,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>
@@ -1415,7 +1412,7 @@ $error = $_GET['error'] ?? '';
                                 <span class="text-muted">day</span>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-end">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='rent.php'">
                                     Rent Now
                                 </button>
                             </div>

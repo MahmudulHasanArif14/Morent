@@ -1,5 +1,34 @@
+<?php
+session_start();
+include 'dbconfig.php';
+
+
+
+if (!isset($_SESSION['email']) || empty($_SESSION['email']) || !isset($_SESSION['isLogedIN']) || $_SESSION['isLogedIN'] !== true) {
+    header("Location: login.php?error=" . urlencode("Login to access the Rent page."));
+    exit;
+}
+
+// Handle payment submission
+$paymentSuccess = false;
+if (isset($_POST['pay_now'])) {
+    $car_name = $_POST['car_name'];
+    $card_number = $_POST['card_number'];
+    $expiry_date = $_POST['expiry_date'];
+    $cvv = $_POST['cvv'];
+
+    // Simulate payment success (replace with real payment gateway)
+    $paymentSuccess = true;
+
+    // Here you can also store payment info into DB if needed
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,12 +102,14 @@
         .review-text {
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
         .review-text.expanded {
             -webkit-line-clamp: unset;
+            line-clamp: unset;
         }
 
         .text-blue {
@@ -101,6 +132,7 @@
         }
     </style>
 </head>
+
 <body>
     <header class="navbar navbar-expand-lg sticky-top navbar-custom p-4">
         <div class="container-fluid">
@@ -120,17 +152,19 @@
                         <a class="nav-link mx-2" href="#"><i class="bi bi-bell-fill fs-5 text-secondary"></i></a>
                     </li>
                     <li class="nav-item d-none d-lg-block">
-                        <a class="nav-link mx-2" href="#"><i class="bi bi-gear-fill fs-5 text-secondary"></i></a>
+                        <a class="nav-link mx-2" href="userprofile.php"><i class="bi bi-gear-fill fs-5 text-secondary"></i></a>
                     </li>
                     <li class="nav-item dropdown ms-2">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://placehold.co/40x40/E8D2E1/ffffff?text=U" alt="Profile" class="rounded-circle" width="40" height="40">
+                            <img src="https://placehold.co/40x40/E8F2E1/ffffff?text=Arif" alt="Profile" class="rounded-circle" width="40" height="40">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="userprofile.php">Profile</a></li>
+                            <li><a class="dropdown-item" href="userprofile.php">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -217,7 +251,7 @@
             <div class="col-lg-9">
                 <div class="main-content">
                     <!-- Banner -->
-                    <div class="card text-white p-4 rounded-4" style="background: url('../Assets/bg.png') no-repeat center/cover;">
+                    <div class="card text-white p-4 rounded-4" style="background: url('./Assets/bg.png') no-repeat center/cover;">
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-md-7">
@@ -275,15 +309,17 @@
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="fw-bold fs-4 mb-0">$80.00/ <span class="text-secondary fw-normal fs-6">day</span></p>
-                                    <button class="btn btn-rent">Rent Now</button>
+                                    <button class="btn btn-rent" data-bs-toggle="modal" data-bs-target="#paymentModal" data-car="Nissan GT - R">Rent Now</button>
+
                                 </div>
                             </div>
                             <div class="col-lg-5 text-center mt-3 mt-lg-0">
                                 <img src="Assets/carthumb.png" class="img-fluid" alt="Car Image" style="border-radius: 12px;">
                                 <div class="d-flex justify-content-center mt-3">
-                                    <img src="Assets/interior.png" class="img-fluid rounded me-2" alt="Car Thumbnail">
-                                    <img src="https://placehold.co/80x80/f6f7f9/90a3bf?text=Car+Thumb" class="img-fluid rounded me-2" alt="Car Thumbnail">
-                                    <img src="https://placehold.co/80x80/f6f7f9/90a3bf?text=Car+Thumb" class="img-fluid rounded" alt="Car Thumbnail">
+                                    <img src="Assets/interior.png" style="width: 120px; height: 120px;" class="img-fluid rounded me-2" alt="Car Thumbnail">
+                                    <img src="Assets/seatcar.png" style="width: 120px; height: 120px;" class="img-fluid rounded me-2" alt="Car Thumbnail">
+
+                                    <img src="Assets/seatcar.png" style="width: 120px; height: 120px;" class="img-fluid rounded me-2" alt="Car Thumbnail">
                                 </div>
                             </div>
                         </div>
@@ -355,75 +391,157 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white py-5 mt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 mb-4 mb-lg-0">
-                    <h4 class="text-blue fw-bold">MORENT</h4>
-                    <p class="text-secondary mt-3">Our vision is to provide convenience and help increase your sales business.</p>
+
+
+
+
+
+
+
+
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-blue">Complete Payment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
-                    <h6 class="fw-bold">About</h6>
-                    <ul class="list-unstyled text-secondary">
-                        <li><a href="#" class="text-decoration-none text-secondary">How it works</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Featured</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Partnership</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Business Relation</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
-                    <h6 class="fw-bold">Community</h6>
-                    <ul class="list-unstyled text-secondary">
-                        <li><a href="#" class="text-decoration-none text-secondary">Events</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Blog</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Podcast</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Invite a friend</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
-                    <h6 class="fw-bold">Socials</h6>
-                    <ul class="list-unstyled text-secondary">
-                        <li><a href="#" class="text-decoration-none text-secondary">Discord</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Instagram</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Twitter</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary">Facebook</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <p class="text-secondary mb-2 mb-md-0">&copy;2022 MORENT. All right reserved</p>
-                <div class="d-flex">
-                    <a href="#" class="text-decoration-none text-dark me-4">Privacy & Policy</a>
-                    <a href="#" class="text-decoration-none text-dark">Terms & Condition</a>
+                <div class="modal-body">
+                    <form id="paymentForm" method="POST" action="">
+                        <input type="hidden" name="car_name" id="modalCarName">
+                        <div class="mb-3">
+                            <label class="form-label">Card Number</label>
+                            <input type="text" name="card_number" class="form-control" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Expiry Date</label>
+                                <input type="text" name="expiry_date" class="form-control" placeholder="MM/YY" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">CVV</label>
+                                <input type="password" name="cvv" class="form-control" placeholder="***" maxlength="3" required>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" name="pay_now" class="btn btn-rent">Pay Now</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <!-- Custom JS -->
-    <script>
-        function toggleReviews(event) {
-            event.preventDefault();
-            const reviewsContainer = document.getElementById('reviews-container');
-            const showMoreBtn = event.currentTarget;
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow text-center p-4">
+                <h5 class="fw-bold text-success">✅ Payment Successful!</h5>
+                <p>Thank you for renting with us.</p>
+                <button class="btn btn-primary" id="successOkBtn">Go to Homepage</button>
+            </div>
+        </div>
+    </div>
 
-            const reviews = reviewsContainer.querySelectorAll('.review-card');
-            reviews.forEach(review => {
-                const text = review.querySelector('.review-text');
-                text.classList.toggle('expanded');
-            });
 
-            if (showMoreBtn.innerText.includes('Show All')) {
-                showMoreBtn.innerHTML = 'Show Less <i class="bi bi-chevron-up"></i>';
-            } else {
-                showMoreBtn.innerHTML = 'Show All <i class="bi bi-chevron-down"></i>';
-            }
+
+   
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-white py-5 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <h4 class="text-blue fw-bold">MORENT</h4>
+                <p class="text-secondary mt-3">Our vision is to provide convenience and help increase your sales business.</p>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
+                <h6 class="fw-bold">About</h6>
+                <ul class="list-unstyled text-secondary">
+                    <li><a href="#" class="text-decoration-none text-secondary">How it works</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Featured</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Partnership</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Business Relation</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
+                <h6 class="fw-bold">Community</h6>
+                <ul class="list-unstyled text-secondary">
+                    <li><a href="#" class="text-decoration-none text-secondary">Events</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Blog</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Podcast</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Invite a friend</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4 mb-lg-0">
+                <h6 class="fw-bold">Socials</h6>
+                <ul class="list-unstyled text-secondary">
+                    <li><a href="#" class="text-decoration-none text-secondary">Discord</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Instagram</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Twitter</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="text-secondary mb-2 mb-md-0">&copy;2022 MORENT. All right reserved</p>
+            <div class="d-flex">
+                <a href="#" class="text-decoration-none text-dark me-4">Privacy & Policy</a>
+                <a href="#" class="text-decoration-none text-dark">Terms & Condition</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<!-- Custom JS -->
+<script>
+    function toggleReviews(event) {
+        event.preventDefault();
+        const reviewsContainer = document.getElementById('reviews-container');
+        const showMoreBtn = event.currentTarget;
+
+        const reviews = reviewsContainer.querySelectorAll('.review-card');
+        reviews.forEach(review => {
+            const text = review.querySelector('.review-text');
+            text.classList.toggle('expanded');
+        });
+
+        if (showMoreBtn.innerText.includes('Show All')) {
+            showMoreBtn.innerHTML = 'Show Less <i class="bi bi-chevron-up"></i>';
+        } else {
+            showMoreBtn.innerHTML = 'Show All <i class="bi bi-chevron-down"></i>';
         }
-    </script>
+    }
+
+
+       const paymentModal = document.getElementById('paymentModal');
+        paymentModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const carName = button.getAttribute('data-car');
+            document.getElementById('modalCarName').value = carName;
+        });
+
+        document.getElementById('successOkBtn').addEventListener('click', function() {
+            window.location.href = 'index.php';
+        });
+</script>
+ <?php if ($paymentSuccess) { ?>
+        <script>
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        </script>
+    <?php } ?>
 </body>
+
 </html>

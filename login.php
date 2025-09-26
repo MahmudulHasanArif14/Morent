@@ -1,3 +1,17 @@
+<?php
+session_start();
+include 'dbconfig.php';
+
+
+
+if(isset($_SESSION['email']) && !empty($_SESSION['email']) && isset($_SESSION['isLogedIN']) && $_SESSION['isLogedIN'] === true){
+    header("Location: homepage.php");
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

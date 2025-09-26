@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verify'])) {
         if ($user_otp == $row['otp']) {
             // OTP verified
             $_SESSION['otp_verified'] = true;
+            $_SESSION['isLogedIN'] = true;
 
             // Activate account
             $updateQuery = "UPDATE `userinfo` SET status='active' WHERE Email='$email'";

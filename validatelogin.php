@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user['Password'] == $password && $user['status'] == 'active') {
             $_SESSION['user_id'] = $user['uid'];
             $_SESSION['email'] = $user['Email'];
+            $_SESSION['isLogedIN'] = true;
 
             $success = "Login successful!";
             $activationCode = $user['activate_code'];
@@ -95,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($result == true) {
                    
                     $_SESSION['email'] = $email;
+                    
                     header("Location: verify.php?activate_code=" . urlencode($activate_code));
                     exit;
                 } else {
