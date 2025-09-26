@@ -39,7 +39,6 @@ if (!$user) {
     <!-- Custom css -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/colors.css">
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -141,14 +140,14 @@ if (!$user) {
 
 
             <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-5 m-0">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-3  m-0">
 
                 <div class="card p-5 mb-4 bg-light shadow-sm">
                     <div class="d-flex align-items-center">
                         <form action="upload_avatar.php" method="post" enctype="multipart/form-data">
                             <?php
-                            $name=$user['FirstName'];
-                            // Fetch avatar from DB
+                            $name = $user['FirstName'];
+
                             $avatar = !empty($user['Avatar']) ? $user['Avatar'] : "https://placehold.co/100x100/EFEFEF/333333?text=$name";
                             ?>
                             <div class="position-relative">
@@ -156,7 +155,7 @@ if (!$user) {
                                 <label for="avatarUpload" class="position-absolute bottom-0 end-0" style="font-size: 20px;">
                                     <i class="bi bi-camera-fill"></i>
                                 </label>
-                                <input type="file" id="avatarUpload" name="avatar" style="display:none;" onchange="this.form.submit()">
+                                <input type="file" id="avatarUpload" name="avatar" class="d-none" onchange="this.form.submit()">
                             </div>
                         </form>
                         <div class="ms-4">
@@ -309,29 +308,14 @@ if (!$user) {
                         </div>
                     </div>
 
-                    <!-- Success Modal -->
-                    <div class="modal fade" id="updateSuccessModal" tabindex="-1" aria-labelledby="updateSuccessLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content border-0 shadow-sm">
-                                <div class="modal-header bg-success text-white">
-                                    <h5 class="modal-title" id="updateSuccessLabel">Success</h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Profile updated successfully.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
 
                     <!-- Personal Info Section -->
-                    <form action="update.php" method="post">
-                        <div class="tab-pane fade" id="personal-info" role="tabpanel"
-                            aria-labelledby="v-pills-personal-tab">
+
+                    <div class="tab-pane fade" id="personal-info" role="tabpanel"
+                        aria-labelledby="v-pills-personal-tab">
+                        <form action="update.php" method="post">
                             <div class="card">
                                 <div class="card-header d-flex justify-content-between align-items-center">
                                     <h5 class="mb-0">Personal Information</h5>
@@ -367,8 +351,10 @@ if (!$user) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
+
 
 
 
@@ -436,6 +422,7 @@ if (!$user) {
                         </div>
                     </div>
 
+
                     <!-- Settings Section -->
                     <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                         <div class="card">
@@ -443,37 +430,76 @@ if (!$user) {
                                 <h5 class="mb-0">Settings</h5>
                             </div>
                             <div class="card-body">
+                                <?php
+                                $successMsg = isset($_GET['success']) ? htmlspecialchars($_GET['success']) : '';
+                                $errorMsg = isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '';
+
+                                ?>
+                                <?php if ($successMsg): ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <?php echo $successMsg; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($errorMsg): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <?php echo $errorMsg; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+
+
                                 <h6>Change Password</h6>
-                                <form>
+                                <form action="changepass.php" method="post">
                                     <div class="mb-3">
                                         <label for="currentPassword" class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id="currentPassword">
+                                        <input type="password" class="form-control" id="currentPassword" name="oldpass" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="newPassword" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id="newPassword">
+                                        <input type="password" class="form-control" id="newPassword" name="newpass" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update Password</button>
                                 </form>
+
                                 <hr>
                                 <h6>Notifications</h6>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="promoEmails"
-                                        checked>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="promoEmails" checked>
                                     <label class="form-check-label" for="promoEmails">Receive promotional emails</label>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </main>
+
+            <!-- Success Modal -->
+            <div class="modal fade" id="updateSuccessModal" tabindex="-1" aria-labelledby="updateSuccessLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow-sm">
+                        <div class="modal-header bg-success text-white">
+                            <h5 class="modal-title" id="updateSuccessLabel">Success</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Profile updated successfully.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
 
